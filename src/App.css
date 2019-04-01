@@ -1,33 +1,233 @@
 .App {
   text-align: center;
+  width: 100%
+  
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+/* Form{
+  border: 1px solid black;
+  padding: 15px;
+  border-radius: 10px
+} */
+
+.register, .login {
+  width: 370px;
+  border: 1px solid #d6d7da;
+  padding: 0px 15px 15px 15px;
+  border-radius: 5px;
+  font-family: arial;
+  line-height: 16px;
+  color: #333333;
+  font-size: 14px;
+  background: #ffffff;
+  margin: 100px auto;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+form label, form input {
+  display: block;
+  margin-bottom: 10px;
+  width: 100%
+}
+
+form input {
+  padding: 10px;
+  border: solid 1px #BDC7D8;
+
+}
+
+.button {
+  background-color: #00BFFF;
+  border-color: #3ac162;
+  font-weight: bold;
+  padding: 12px 15px;
+  color: #ffffff;
+}
+
+.errorMsg {
+  color: #cc0000;
+  margin-bottom: 12px;
+}
+
+.sucessMsg {
+  color: #6B8E23;
+  margin-bottom: 10px;
+}
+
+
+
+.nav1 {
+  height: fit-content;
+  width: 100%;
+  background-color: #140403d8;
+  position: relative;
+}
+
+.nav1 > .nav1-header {
+  display: inline;
+}
+
+.nav1 > .nav1-header > .nav1-title {
+  display: inline-block;
+  font-size: 22px;
+  color: #fff;
+  padding: 10px 10px 10px 10px;
+  float: left;
+}
+
+.nav1 > .nav1-btn {
+  display: none;
+}
+
+.nav1 > .nav1-links {
+  display: inline;
+  /* float: right; */
+  margin: auto;
+  font-size: 18px;
+}
+
+.nav1 > .nav1-links > li {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #efefef;
+  margin-right: 5rem;
+}
+
+.nav1 > .nav1-links > li:hover {
+  background-color: rgba(22, 187, 216, 0.829);
+}
+
+.nav1 > #nav1-check {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .nav1 > .nav1-btn {
+    display: inline-block;
+    position: absolute;
+    right: 0px;
+    top: 0px;
+  }
+
+  .nav1 > .nav1-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+
+  .nav1 > .nav1-btn > label:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+
+  .nav1 > .nav1-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #eee;
+  }
+
+  .nav1 > .nav1-links {
+    position: absolute;
+    display: block;
+    width: 100%;
+    background-color: #333;
+    height: 0px;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 50px;
+    left: 0px;
+  }
+
+  .nav1 > .nav1-links > li {
+    display: block;
+    width: 100%;
+  }
+
+  .nav1 > #nav1-check:not(:checked) + .nav1-links {
+    height: 0px;
+  }
+
+  .nav1 > #nav1-check:checked + .nav1-links {
+    height: calc(100vh - 50px);
+    overflow-y: auto;
+  }
+}
+
+a{
+  text-decoration: none;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+a:hover{
+  text-decoration: none;
+  color: white
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+
+
+.delete {
+	display: inline-block;
+	color: red;
+	margin: 3px;
+	padding: 2px;
+}
+
+.delete:hover {
+	background: lightgrey;
+	border-radius: 5px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+.complete {
+	display: inline-block;
+	color: rgb(1, 210, 247);
+	margin: 3px;
+	padding: 2px;
+}
+
+.complete:hover {
+	background: lightgrey;
+	border-radius: 5px;
+	cursor: pointer;
+	cursor: hand;
+}
+
+/* table thead {
+  display:table;
+  width: 100%;
+
+  /* position: fixed; */
+
+table{
+  
+  table-layout:fixed;
+  margin-bottom: 0px !important;
+}
+
+.EditIcon{
+margin:5px;
+margin-right: 20px;
+}
+
+.EditIcon:hover{
+  cursor: pointer;
+  
+}
+
+.DeleteIcon{
+margin: 5px
+
+}
+.DeleteIcon:hover{
+  cursor: pointer;
+}
+.AddNewCategory{
+  margin: 5px;
+}
+
+
+
+.BookPhoto{
+ width: 81px;
 }
