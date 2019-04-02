@@ -192,9 +192,7 @@ export class BooksListing extends React.Component {
                                     <Form>
                                         <Form.Row>
                                             <Form.Group as={Col} controlId="formGridAddress1" >
-                                                {/* <Form.Label >Name Of The Category</Form.Label>
-                                                <Form.Control placeholder={this.state.CategoryValues.Name} value={this.state.EditedCategoryName} onChange={this.TypingEditCategory} /> */}
-
+             
                                                 <Form.Label >Book Name</Form.Label>
 
                                                 <Form.Control placeholder={this.state.EditedBookValues.Name} value={this.state.EditedBookValues.BookName}onChange={this.Typing} name="BookName" />
