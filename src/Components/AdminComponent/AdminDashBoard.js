@@ -2,7 +2,7 @@ import React from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import { CategoriesList } from './CategoriesList'
 import {BooksListing} from './BooksListing'
-import { MyContext } from '../App'
+import { MyContext } from '../../App'
 
 const uuidv4 = require('uuid/v4');
 

@@ -3,10 +3,11 @@ import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Switch } from 'react-router';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { RegisterForm } from './Components/RegisterForm'
-import { LogInForm } from './Components/LogInForm';
-import { Navbar } from './Components/Navbar';
-import { AdminDashBoard } from './Components/AdminDashBoard'
+import { RegisterForm } from './Components/AdminComponent/RegisterForm'
+import { LogInForm } from './Components/AdminComponent/LogInForm';
+import { Navbar } from './Components/AdminComponent/Navbar';
+import { AdminDashBoard } from './Components/AdminComponent/AdminDashBoard'
+import {DisplayCategories} from './Components/UserComponent/Categories/list'
 
 export const MyContext = React.createContext();
 
@@ -85,6 +86,10 @@ DeleteBook=(BookID)=>{
   matchedIdCategory.deleted = true;
   this.setState( {})
 }
+///-----------------DispalyCategoryBooks-----------------------
+DispalyCategoryBooks=(CategoryId )=>{
+
+}
 
   render() {
     const value = {
@@ -94,7 +99,9 @@ DeleteBook=(BookID)=>{
       EditCategory:this.EditCategory,
       AddCategory:this.AddCategory,
       AddNewBook:this.AddNewBook,
-      DeleteBook:this.DeleteBook
+      DeleteBook:this.DeleteBook,
+      DispalyCategoryBooks:this.DispalyCategoryBooks
+
 
     };
     return (
@@ -112,8 +119,9 @@ DeleteBook=(BookID)=>{
                   <Route path="/" exact component={RegisterForm} />
                   <Route path="/login" exact component={LogInForm} />
                   <Route path="/Admin" exact component={AdminDashBoard} />
+                  <Route path="/DisplayCategories" exact component={DisplayCategories} />
 
-
+                  
                 </Switch>
               </div>
             </Router>

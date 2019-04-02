@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom'
-import { MyContext } from '../App'
+import { MyContext } from '../../App'
 
 
 export const Navbar = (props) => {
