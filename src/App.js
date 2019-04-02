@@ -68,7 +68,7 @@ AddCategory=(Category)=>{
 AddNewBook=(Book)=>{
   console.log('hello from add newbook')
   console.log(Book)
-  const matchedCategory = this.state.Categories.tbody.find((item) => item.Name ===Book.Name);
+  const matchedCategory = this.state.Categories.tbody.find((item) => item.Name ===Book.CategoryId);
   const matchedCategoryId= matchedCategory.ID
   Book.CategoryId = matchedCategoryId;
   const {tbody}=this.state.Books;
@@ -80,6 +80,12 @@ AddNewBook=(Book)=>{
 });
 }
 
+DeleteBook=(BookID)=>{
+  const matchedIdCategory = this.state.Books.tbody.find((item) => item.ID ===BookID);
+  matchedIdCategory.deleted = true;
+  this.setState( {})
+}
+
   render() {
     const value = {
       state: this.state,
@@ -87,7 +93,8 @@ AddNewBook=(Book)=>{
       DeleteCategory :this.DeleteCategory,
       EditCategory:this.EditCategory,
       AddCategory:this.AddCategory,
-      AddNewBook:this.AddNewBook
+      AddNewBook:this.AddNewBook,
+      DeleteBook:this.DeleteBook
 
     };
     return (
