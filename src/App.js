@@ -8,6 +8,7 @@ import { LogInForm } from './Components/AdminComponent/LogInForm';
 import { Navbar } from './Components/AdminComponent/Navbar';
 import { AdminDashBoard } from './Components/AdminComponent/AdminDashBoard'
 import {DisplayCategories} from './Components/UserComponent/Categories/list'
+import {DisplayCategoryBooks} from './Components/UserComponent/Books/List'
 
 export const MyContext = React.createContext();
 
@@ -120,8 +121,7 @@ DispalyCategoryBooks=(CategoryId )=>{
                   <Route path="/login" exact component={LogInForm} />
                   <Route path="/Admin" exact component={AdminDashBoard} />
                   <Route path="/DisplayCategories" exact component={DisplayCategories} />
-
-                  
+                  <Route path="/DisplayCategoryBooks" exact component={DisplayCategoryBooks} />  
                 </Switch>
               </div>
             </Router>
