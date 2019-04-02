@@ -101,7 +101,7 @@ export class BooksListing extends React.Component {
 
                             <Container>
                                 <Row>
-                                    <Col md={{ span: 6, offset: 8 }}><Button className="AddNewCategory" variant="primary" onClick={this.OpenAddPopUp}>Add New CAtegory</Button></Col>
+                                    <Col md={{ span: 6, offset: 8 }}><Button className="AddNewCategory" variant="primary" onClick={this.OpenAddPopUp}>Add New Book</Button></Col>
                                 </Row>
                             </Container>
 

@@ -20,12 +20,14 @@ export  class AuthorsListing extends React.Component {
 
         this.state = {
 
-            BookName: '',
-            CategoryId: '',
-            AuthorName: '',
-            imageUrl: '',
+            PhotoUrl:'',
+            FirstName:'',
+            LastName:'',
+            DateOfBirth:'',
+            Description:'',
+            
 
-            NewCategoryPopSHow: false,
+            NewAuthorPopSHow: false,
             EditPopShow: false,
             // addnewCategoryName: '',
             // EditedCategoryName: '',
@@ -53,7 +55,7 @@ export  class AuthorsListing extends React.Component {
     }
 
     OpenAddPopUp() {
-        this.setState({ NewCategoryPopSHow: true });
+        this.setState({ NewAuthorPopSHow: true });
     }
 
     ColseAddPopUp() {
@@ -71,24 +73,36 @@ export  class AuthorsListing extends React.Component {
         // this.setState({ addnewCategoryName: value });
     }
 
-    AddNewBook = (inputvalue) => (e) => {
-        const BookName = this.state.BookName;
-        if (!BookName) return;
-        const Book = {
-            ID: uuidv1(), photo: this.state.imageUrl, Name: BookName, CategoryId: this.state.CategoryId, AuthorId: this.state.AuthorName, deleted: false
+    AddNewAuthor = (inputvalue) => (e) => {
+
+        const photo = this.state.PhotoUrl;
+        const FirstName = this.state.FirstName;
+        const LastName = this.state.LastName;
+        const DateOfBirth = this.state.DateOfBirth;
+        const Description = this.state.Description;
+
+
+
+        if (!FirstName && !photo && !LastName && !DateOfBirth &!Description) return;
+        const Author = {
+            ID: uuidv1(), photo,FirstName,LastName,DateOfBirth,Description ,deleted: false
         };
-        console.log(Book)
-        inputvalue.AddNewBook(Book)
+        console.log(Author)
+        inputvalue.AddNewAuthor(Author)
         this.setState({
-            NewCategoryPopSHow: false, BookName: '',
-            CategoryId: '',
-            AuthorName: '',
-            imageUrl: '',
+            NewAuthorPopSHow: false,
+            PhotoUrl:'',
+            FirstName:'',
+            LastName:'',
+            DateOfBirth:'',
+            Description:'',
+            
+           
         })
     }
 
-    DeleteBook = (inputvalue, id) => (e) => {
-        inputvalue.DeleteBook(id)
+    DeleteAuthor = (inputvalue, id) => (e) => {
+        inputvalue.DeleteAuthor(id)
     }
 
 
@@ -101,7 +115,7 @@ export  class AuthorsListing extends React.Component {
 
                             <Container>
                                 <Row>
-                                    <Col md={{ span: 6, offset: 8 }}><Button className="AddNewCategory" variant="primary" onClick={this.OpenAddPopUp}>Add New CAtegory</Button></Col>
+                                    <Col md={{ span: 6, offset: 8 }}><Button className="AddNewCategory" variant="primary" onClick={this.OpenAddPopUp}>Add Author</Button></Col>
                                 </Row>
                             </Container>
 
@@ -119,7 +133,7 @@ export  class AuthorsListing extends React.Component {
                                             <tr key={uuidv1()} >
 
                                                 <td key={uuidv1()}>{z.ID}</td>
-                                                <td key={uuidv1()}><img className="AuthorPhoto" src={z.Photo} alt={z.Photo} /></td>
+                                                <td key={uuidv1()}><img className="AuthorPhoto" src={z.photo} alt={z.photo} /></td>
                                                 <td key={uuidv1()}>{z.FirstName}</td>
                                                 <td key={uuidv1()}>{z.LastName}</td>
                                                 <td key={uuidv1()}>{z.DateOfBirth}</td>
@@ -127,7 +141,7 @@ export  class AuthorsListing extends React.Component {
                                                 <td>
                                                     <>
                                                         <FontAwesomeIcon className="EditIcon" icon={faEdit} onClick={this.OpenEditPopUp(z)} />
-                                                        <FontAwesomeIcon className="DeleteIcon" icon={faTrash} onClick={this.DeleteBook(value, z.ID)} />
+                                                        <FontAwesomeIcon className="DeleteIcon" icon={faTrash} onClick={this.DeleteAuthor(value, z.ID)} />
                                                     </>
                                                 </td>
                                             </tr>
@@ -136,8 +150,8 @@ export  class AuthorsListing extends React.Component {
                                 </Table>
 
                             </Container>
-                            {/* -------------------------------------new Book---------------------------------------------------- */}
-                            <Modal show={this.state.NewCategoryPopSHow} onHide={this.ColseAddPopUp}>
+                            {/* -------------------------------------new Author---------------------------------------------------- */}
+                            <Modal show={this.state.NewAuthorPopSHow} onHide={this.ColseAddPopUp}>
                                 <Modal.Header closeButton>
                                     <Modal.Title>Modal heading</Modal.Title>
                                 </Modal.Header>
@@ -146,24 +160,23 @@ export  class AuthorsListing extends React.Component {
                                     <Form>
                                         <Form.Row>
                                             <Form.Group as={Col} controlId="formGridAddress1" >
-                                                <Form.Label >Book Name</Form.Label>
+                                                    <Form.Label >Photo Url</Form.Label>
+                                                    <Form.Control value={this.state.PhotoUrl} onChange={this.Typing} name="PhotoUrl" />
 
-                                                <Form.Control value={this.state.BookName} onChange={this.Typing} name="BookName" />
+                                            <Form.Label >First Name</Form.Label>
+                                            <Form.Control value={this.state.FirstName} onChange={this.Typing} name="FirstName" />
 
-                                                <Form.Label > Category Name</Form.Label>
 
-                                                <Form.Control as="select" name="CategoryId" value={this.state.CategoryId} onChange={this.Typing} >
-                                                    <option disabled>Choose...</option>
-                                                    {value.state.Categories.tbody.filter(c => (!(c.deleted))).map(z =>
-                                                        <option key={uuidv1()} value={z.Name} >{z.Name}</option>)}
-                                                </Form.Control>
+                                            <Form.Label >last Name</Form.Label>
+                                            <Form.Control value={this.state.LastName} onChange={this.Typing} name="LastName" />
+                                            {/* DatePicekr search 3leha fel el upgrades */}
+                                            <Form.Label >Date Of Birth</Form.Label>
+                                            <Form.Control value={this.state.DateOfBirth} onChange={this.Typing} name="DateOfBirth" />
 
-                                                <Form.Label > Author Name</Form.Label>
+                                            <Form.Label >Description</Form.Label>
+                                            <Form.Control as="textarea" value={this.state.Description} onChange={this.Typing} name="Description" />
 
-                                                <Form.Control value={this.state.AuthorName} onChange={this.Typing} name="AuthorName" />
-                                                <Form.Label >Image Url</Form.Label>
 
-                                                <Form.Control value={this.state.imageUrl} onChange={this.Typing} name="imageUrl" />
 
                                             </Form.Group>
                                         </Form.Row>
@@ -176,7 +189,7 @@ export  class AuthorsListing extends React.Component {
                                     <Button variant="secondary" onClick={this.ColseAddPopUp}>
                                         Close
             </Button>
-                                    <Button variant="primary" onClick={this.AddNewBook(value)}>
+                                    <Button variant="primary" onClick={this.AddNewAuthor(value)}>
                                         Add
             </Button>
                                 </Modal.Footer>

@@ -33,11 +33,11 @@ class App extends Component {
    ]
   },
   Authors:{
-    th:['ID' , 'Photo' , 'FirstName' , 'LastName' , 'DateOfBirth', 'Action'],
+    th:['ID' , 'photo' , 'FirstName' , 'LastName' , 'DateOfBirth', 'Action'],
     tbody:[
-      {ID:1, Photo:'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png' ,FirstName:'Ahmed', LastName:'Mourad' , DateOfBirth:'20/5/1885' , description:'author description 1',deleted:false},
-      {ID:2, Photo:'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png' ,FirstName:'omar', LastName:'taher' , DateOfBirth:'20/9/1975' , description:'author description 2',deleted:false},
-      {ID:3, Photo:'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png' ,FirstName:'mostafa', LastName:'monuir' , DateOfBirth:'26/9/1990' , description:'author description 3',deleted:false},
+      {ID:1, photo:'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png' ,FirstName:'Ahmed', LastName:'Mourad' , DateOfBirth:'20/5/1885' , description:'author description 1',deleted:false},
+      {ID:2, photo:'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png' ,FirstName:'omar', LastName:'taher' , DateOfBirth:'20/9/1975' , description:'author description 2',deleted:false},
+      {ID:3, photo:'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png' ,FirstName:'mostafa', LastName:'monuir' , DateOfBirth:'26/9/1990' , description:'author description 3',deleted:false},
     ]
   }
     
@@ -93,9 +93,24 @@ DeleteBook=(BookID)=>{
   matchedIdCategory.deleted = true;
   this.setState( {})
 }
-///-----------------DispalyCategoryBooks-----------------------
-DispalyCategoryBooks=(CategoryId )=>{
+///-----------------Authors-----------------------
 
+
+AddNewAuthor=(Author)=>{
+ 
+  const {tbody}=this.state.Authors;
+  this.setState({
+    Authors : {
+    ...this.state.Authors, 
+    tbody: tbody.concat(Author)
+  }
+});
+}
+
+DeleteAuthor=(AuthorID)=>{
+  const matchedIdCategory = this.state.Authors.tbody.find((item) => item.ID ===AuthorID);
+  matchedIdCategory.deleted = true;
+  this.setState( {})
 }
 
   render() {
@@ -107,7 +122,9 @@ DispalyCategoryBooks=(CategoryId )=>{
       AddCategory:this.AddCategory,
       AddNewBook:this.AddNewBook,
       DeleteBook:this.DeleteBook,
-      DispalyCategoryBooks:this.DispalyCategoryBooks
+      DispalyCategoryBooks:this.DispalyCategoryBooks,
+      DeleteAuthor:this.DeleteAuthor,
+      AddNewAuthor:this.AddNewAuthor
 
 
     };
