@@ -9,6 +9,7 @@ import { Navbar } from './Components/AdminComponent/Navbar';
 import { AdminDashBoard } from './Components/AdminComponent/AdminDashBoard'
 import {DisplayCategories} from './Components/UserComponent/Categories/list'
 import {DisplayCategoryBooks} from './Components/UserComponent/Books/List'
+import {BookDetails} from './Components/UserComponent/Books/bookdetails'
 
 export const MyContext = React.createContext();
 
@@ -26,13 +27,18 @@ class App extends Component {
     Books : {
       th: ['ID', 'photo','Name','CategoryId','AuthorId','Action'],
       tbody: [
-        {ID:1,photo: 'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png',Name:'Animals',CategoryId:1,AuthorId:1,deleted:false},
-        {ID:2,photo: 'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png',Name:'Building',CategoryId:2,AuthorId:2,deleted:false},
-        {ID:3,photo: 'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png',Name:'Programming',CategoryId:1,AuthorId:3,deleted:false},
-        
-                
+        {ID:1,photo: 'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png',Name:'Animals',CategoryId:1,AuthorId:1,deleted:false , description: "jfvjvjf 111111"},
+        {ID:2,photo: 'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png',Name:'Building',CategoryId:2,AuthorId:2,deleted:false , description: "jfvjvjf 2222"},
+        {ID:3,photo: 'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png',Name:'Programming',CategoryId:1,AuthorId:3,deleted:false , description: "jfvjvjf 33333"},             
    ]
-
+  },
+  Authors:{
+    th:['ID' , 'Photo' , 'FirstName' , 'LastName' , 'DateOfBirth', 'Action'],
+    tbody:[
+      {ID:1, Photo:'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png' ,FirstName:'Ahmed', LastName:'Mourad' , DateOfBirth:'20/5/1885' , description:'author description 1',deleted:false},
+      {ID:2, Photo:'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png' ,FirstName:'omar', LastName:'taher' , DateOfBirth:'20/9/1975' , description:'author description 2',deleted:false},
+      {ID:3, Photo:'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png' ,FirstName:'mostafa', LastName:'monuir' , DateOfBirth:'26/9/1990' , description:'author description 3',deleted:false},
+    ]
   }
     
   }
@@ -121,7 +127,10 @@ DispalyCategoryBooks=(CategoryId )=>{
                   <Route path="/login" exact component={LogInForm} />
                   <Route path="/Admin" exact component={AdminDashBoard} />
                   <Route path="/DisplayCategories" exact component={DisplayCategories} />
-                  <Route path="/DisplayCategoryBooks" exact component={DisplayCategoryBooks} />  
+                  <Route path="/displaybooks/:id" exact component={DisplayCategoryBooks} />
+                  <Route path="/BookDetails/:id" exact component={BookDetails} />
+                  
+                  BookDetails
                 </Switch>
               </div>
             </Router>

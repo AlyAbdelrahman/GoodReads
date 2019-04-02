@@ -2,6 +2,7 @@ import React from 'react';
 import { Tab, Tabs } from 'react-bootstrap';
 import { CategoriesList } from './CategoriesList'
 import {BooksListing} from './BooksListing'
+import {AuthorsListing} from './AuthorsList'
 import { MyContext } from '../../App'
 
 const uuidv4 = require('uuid/v4');
@@ -35,7 +36,7 @@ return (
             </Tab>
 
             <Tab eventKey="Author" title="Author" >
-                Author page
+                <AuthorsListing/>
             </Tab>
 
         </Tabs>

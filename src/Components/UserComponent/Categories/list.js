@@ -42,7 +42,7 @@ DisplayBooks =(value, id) =>(e) =>{
           <Card.Img variant="top" src="https://elgarblog.files.wordpress.com/2014/01/education-books.jpg" />
           <Card.Body>
             <Link to={`/displaybooks/${p.ID}`}>Category Name : {p.Name}</Link> 
-            <Button onClick={this.DisplayBooks(value,p.ID)}>See all Books</Button>
+            {/* <Button onClick={this.DisplayBooks(value,p.ID)}>See all Books</Button> */}
            
           </Card.Body>
         </Card>
