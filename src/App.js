@@ -115,6 +115,17 @@ AddNewAuthor=(Author)=>{
   }
 });
 }
+EditAuthor=(AuthorID, NewValues)=>{
+  const matchedIdAuthor = this.state.Categories.tbody.find((item) => item.ID ===AuthorID);
+
+  matchedIdAuthor.photo = NewValues.photo;
+  matchedIdAuthor.FirstName = NewValues.FirstName;
+  matchedIdAuthor.LastName = NewValues.LastName;
+  matchedIdAuthor.DateOfBirth = NewValues.DateOfBirth;
+  this.setState( {})
+}
+
+
 
 DeleteAuthor=(AuthorID)=>{
   const matchedIdCategory = this.state.Authors.tbody.find((item) => item.ID ===AuthorID);
@@ -133,7 +144,8 @@ DeleteAuthor=(AuthorID)=>{
       DeleteBook:this.DeleteBook,
       DispalyCategoryBooks:this.DispalyCategoryBooks,
       DeleteAuthor:this.DeleteAuthor,
-      AddNewAuthor:this.AddNewAuthor
+      AddNewAuthor:this.AddNewAuthor,
+      EditAuthor:this.EditAuthor
 
 
     };

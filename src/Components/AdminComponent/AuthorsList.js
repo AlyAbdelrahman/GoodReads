@@ -31,7 +31,7 @@ export  class AuthorsListing extends React.Component {
             EditPopShow: false,
             // addnewCategoryName: '',
             // EditedCategoryName: '',
-            EditedBookValues: []
+            EditedAuthorValues: []
         }
 
     }
@@ -40,7 +40,7 @@ export  class AuthorsListing extends React.Component {
     }
 
     OpenEditPopUp = (value) => (e) => {
-        this.setState({ EditPopShow: true, EditedBookValues: value });
+        this.setState({ EditPopShow: true, EditedAuthorValues: value });
     }
 
     TypingEditCategory(e) {
@@ -50,7 +50,7 @@ export  class AuthorsListing extends React.Component {
     }
 
     SaveEdit = (inputvalue, id) => (e) => {
-        inputvalue.EditCategory(id, this.state.EditedCategoryName)
+        inputvalue.EditAuthor(id, this.state.EditedAuthorValues)
         this.setState({ EditPopShow: false })
     }
 
@@ -180,9 +180,6 @@ export  class AuthorsListing extends React.Component {
 
                                             </Form.Group>
                                         </Form.Row>
-
-
-
                                     </Form>
                                 </Modal.Body>
                                 <Modal.Footer>
@@ -205,28 +202,22 @@ export  class AuthorsListing extends React.Component {
                                     <Form>
                                         <Form.Row>
                                             <Form.Group as={Col} controlId="formGridAddress1" >
-                                                {/* <Form.Label >Name Of The Category</Form.Label>
-                                                <Form.Control placeholder={this.state.CategoryValues.Name} value={this.state.EditedCategoryName} onChange={this.TypingEditCategory} /> */}
 
-                                                <Form.Label >Book Name</Form.Label>
+                                            <Form.Label >Photo Url</Form.Label>
+                                            <Form.Control placeholder={this.state.EditedAuthorValues.photo} value={this.state.EditedAuthorValues.photo} onChange={this.Typing} name="PhotoUrl" />
 
-                                                <Form.Control placeholder={this.state.EditedBookValues.Name} value={this.state.EditedBookValues.BookName}onChange={this.Typing} name="BookName" />
-                                                <Form.Label >Category Name</Form.Label>
-                                                
-                                                <Form.Control as="select" name="CategoryId"  value={this.state.EditedBookValues.CategoryId}  onChange={this.Typing} >
-                                                    <option  >Choose...</option>
-                                                    {value.state.Categories.tbody.filter(c => (!(c.deleted))).map(z =>
-                                                        <option key={uuidv1()} value={z.Name} >{z.Name}</option>)}
-                                                </Form.Control>
+                                            <Form.Label >First Name</Form.Label>
+                                            <Form.Control placeholder={this.state.EditedAuthorValues.FirstName} value={this.state.EditedAuthorValues.FirstName} onChange={this.Typing} name="FirstName" />
 
+                                            <Form.Label >Last Name</Form.Label>
+                                            <Form.Control placeholder={this.state.EditedAuthorValues.LastName} value={this.state.EditedAuthorValues.LastName} onChange={this.Typing} name="LastName" />
 
+                                            <Form.Label >Date Of Birth</Form.Label>
+                                            <Form.Control placeholder={this.state.EditedAuthorValues.DateOfBirth} value={this.state.EditedAuthorValues.DateOfBirth} onChange={this.Typing} name="DateOfBirth" />
 
-                                                <Form.Label > Author Name</Form.Label>
+                                            <Form.Label >Description</Form.Label>
+                                            <Form.Control as="textarea" placeholder={this.state.EditedAuthorValues.description} value={this.state.EditedAuthorValues.description} onChange={this.Typing} name="description" />
 
-                                                <Form.Control placeholder={this.state.EditedBookValues.AuthorName} onChange={this.Typing} name="AuthorName" />
-                                                <Form.Label >Image Url</Form.Label>
-
-                                                <Form.Control placeholder={this.state.EditedBookValues.photo} onChange={this.Typing} name="imageUrl" />
 
                                             </Form.Group>
                                         </Form.Row>
@@ -236,7 +227,7 @@ export  class AuthorsListing extends React.Component {
                                     <Button variant="secondary" onClick={this.ColseEditPopUp}>
                                         Close
                 </Button>
-                                    <Button variant="primary" onClick={this.SaveEdit(value, this.state.EditedBookValues.ID)}>
+                                    <Button variant="primary" onClick={this.SaveEdit(value, this.state.EditedAuthorValues.ID)}>
                                         Save Changes
             </Button>
                                 </Modal.Footer>
