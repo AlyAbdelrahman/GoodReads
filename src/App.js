@@ -10,6 +10,10 @@ import { AdminDashBoard } from './Components/AdminComponent/AdminDashBoard'
 import {DisplayCategories} from './Components/UserComponent/Categories/list'
 import {DisplayCategoryBooks} from './Components/UserComponent/Books/List'
 import {BookDetails} from './Components/UserComponent/Books/bookdetails'
+import {UserDashBoard} from './Components/AdminComponent/UserDashBoard';
+import {WantReadBooks} from './Components/AdminComponent/WantReadBooks';
+import {ReadBooks} from './Components/AdminComponent/ReadBooks';
+import {CurrentlyReading} from './Components/AdminComponent/CurrentlyReadingBooks';
 
 export const MyContext = React.createContext();
 
@@ -39,8 +43,16 @@ class App extends Component {
       {ID:2, photo:'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png' ,FirstName:'omar', LastName:'taher' , DateOfBirth:'20/9/1975' , description:'author description 2',deleted:false},
       {ID:3, photo:'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png' ,FirstName:'mostafa', LastName:'monuir' , DateOfBirth:'26/9/1990' , description:'author description 3',deleted:false},
     ]
+  },
+   
+  UserDashBoard:{
+    th:['ID' , 'Name','Author', 'Rating' , 'AvgRating' ,'Shelve'],
+    tbody :[
+      {ID:1,Name:'Book1', Author:'Ahmed Mourad' ,Rating : '5 Star' , AvgRating:'4 Star'},
+      {ID:1,Name:'Book2', Author:'Ahmed Mourad' ,Rating : '3 Star' , AvgRating:'3 Star'},
+      {ID:1,Name:'Book3', Author:'Ahmed Mourad' ,Rating : '1 Star' , AvgRating:'0 Star'},
+    ]
   }
-    
   }
 
 
@@ -151,6 +163,7 @@ DeleteAuthor=(AuthorID)=>{
           <div className="App">
             <Router>
               <Navbar />
+             
               <div className="PageContainer">
 
                 <Switch>
@@ -159,6 +172,10 @@ DeleteAuthor=(AuthorID)=>{
                   <Route path="/login" exact component={LogInForm} />
                   <Route path="/Admin" exact component={AdminDashBoard} />
                   <Route path="/DisplayCategories" exact component={DisplayCategories} />
+                  <Route path="/UserProfile" exact component={UserDashBoard} />
+                  <Route path="/WantReadBooks" exact component={WantReadBooks} />
+                  <Route path="/ReadBooks" exact component={ReadBooks} />
+                  <Route path="/CurrentlyReadingBooks" exact component={ CurrentlyReading} />
                   <Route path="/displaybooks/:id" exact component={DisplayCategoryBooks} />
                   <Route path="/BookDetails/:id" exact component={BookDetails} />
                   

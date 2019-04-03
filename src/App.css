@@ -256,3 +256,15 @@ margin: 5px
   display: block;
   
 }
+
+/* nourhan userProfile css */
+.margin-top{
+  margin-top: 50px;
+  text-align: left;
+  
+  
+}
+.align-center
+{
+  justify-content: center;
+}
