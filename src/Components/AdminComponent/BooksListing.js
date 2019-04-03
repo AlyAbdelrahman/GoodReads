@@ -22,8 +22,9 @@ export class BooksListing extends React.Component {
 
             BookName: '',
             CategoryId: '',
-            AuthorName: '',
+            AuthorId: '',
             imageUrl: '',
+            Description:'',
 
             NewCategoryPopSHow: false,
             EditPopShow: false,
@@ -75,15 +76,16 @@ export class BooksListing extends React.Component {
         const BookName = this.state.BookName;
         if (!BookName) return;
         const Book = {
-            ID: uuidv1(), photo: this.state.imageUrl, Name: BookName, CategoryId: this.state.CategoryId, AuthorId: this.state.AuthorName, deleted: false
+            ID: uuidv1(), photo: this.state.imageUrl, Name: BookName, CategoryId: this.state.CategoryId, AuthorId: this.state.AuthorId, deleted: false
         };
         console.log(Book)
         inputvalue.AddNewBook(Book)
         this.setState({
             NewCategoryPopSHow: false, BookName: '',
             CategoryId: '',
-            AuthorName: '',
+            AuthorId: '',
             imageUrl: '',
+            Description:''
         })
     }
 
@@ -160,10 +162,20 @@ export class BooksListing extends React.Component {
 
                                                 <Form.Label > Author Name</Form.Label>
 
-                                                <Form.Control value={this.state.AuthorName} onChange={this.Typing} name="AuthorName" />
+                                                <Form.Control as="select" name="AuthorId" value={this.state.AuthorId} onChange={this.Typing} >
+                                                    <option disabled>Choose...</option>
+                                                    {value.state.Authors.tbody.filter(c => (!(c.deleted))).map(z =>
+                                                        <option key={uuidv1()} value={z.FirstName} >{z.FirstName}</option>)}
+                                                </Form.Control>
+
                                                 <Form.Label >Image Url</Form.Label>
 
                                                 <Form.Control value={this.state.imageUrl} onChange={this.Typing} name="imageUrl" />
+                                                    
+                                                    
+                                                <Form.Label >Book Description</Form.Label>
+
+                                                <Form.Control value={this.state.Description} onChange={this.Typing} name="Description" />
 
                                             </Form.Group>
                                         </Form.Row>

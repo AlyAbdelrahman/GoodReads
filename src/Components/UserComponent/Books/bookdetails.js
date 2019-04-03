@@ -42,7 +42,9 @@ DisplayBooks =(value, id) =>(e) =>{
                         <Col sm={6} md={3} className="mb-3 ">
         <Card>
           <Card.Img variant="top" src="https://elgarblog.files.wordpress.com/2014/01/education-books.jpg" />
-          <Card.Body>book decsription : {p.description}
+          <Card.Body>
+              book Name : {p.Name}
+              book decsription : {p.description}
             
             {/* <Button onClick={this.DisplayBooks(value,p.ID)}>See all Books</Button> */}
            

@@ -31,7 +31,10 @@ export  class AuthorsListing extends React.Component {
             EditPopShow: false,
             // addnewCategoryName: '',
             // EditedCategoryName: '',
-            EditedAuthorValues: []
+            EditedAuthorValues: [],
+            NewEditedValues:[
+                
+            ]
         }
 
     }
@@ -50,7 +53,7 @@ export  class AuthorsListing extends React.Component {
     }
 
     SaveEdit = (inputvalue, id) => (e) => {
-        inputvalue.EditAuthor(id, this.state.EditedAuthorValues)
+        inputvalue.EditAuthor(id, this.state.NewEditedValues)
         this.setState({ EditPopShow: false })
     }
 
@@ -59,7 +62,7 @@ export  class AuthorsListing extends React.Component {
     }
 
     ColseAddPopUp() {
-        this.setState({ NewCategoryPopSHow: false });
+        this.setState({ NewAuthorPopSHow: false });
     }
 
     Typing(e) {
@@ -204,19 +207,19 @@ export  class AuthorsListing extends React.Component {
                                             <Form.Group as={Col} controlId="formGridAddress1" >
 
                                             <Form.Label >Photo Url</Form.Label>
-                                            <Form.Control placeholder={this.state.EditedAuthorValues.photo} value={this.state.EditedAuthorValues.photo} onChange={this.Typing} name="PhotoUrl" />
+                                            <Form.Control placeholder={this.state.EditedAuthorValues.photo} value={this.state.PhotoUrl} onChange={this.Typing} name="PhotoUrl" />
 
                                             <Form.Label >First Name</Form.Label>
-                                            <Form.Control placeholder={this.state.EditedAuthorValues.FirstName} value={this.state.EditedAuthorValues.FirstName} onChange={this.Typing} name="FirstName" />
+                                            <Form.Control placeholder={this.state.EditedAuthorValues.FirstName} value={this.state.FirstName} onChange={this.Typing} name="FirstName" />
 
                                             <Form.Label >Last Name</Form.Label>
-                                            <Form.Control placeholder={this.state.EditedAuthorValues.LastName} value={this.state.EditedAuthorValues.LastName} onChange={this.Typing} name="LastName" />
+                                            <Form.Control placeholder={this.state.EditedAuthorValues.LastName} value={this.state.NewEditedValues.LastName} onChange={this.Typing} name="LastName" />
 
                                             <Form.Label >Date Of Birth</Form.Label>
-                                            <Form.Control placeholder={this.state.EditedAuthorValues.DateOfBirth} value={this.state.EditedAuthorValues.DateOfBirth} onChange={this.Typing} name="DateOfBirth" />
+                                            <Form.Control placeholder={this.state.EditedAuthorValues.DateOfBirth} value={this.state.NewEditedValues.DateOfBirth} onChange={this.Typing} name="DateOfBirth" />
 
                                             <Form.Label >Description</Form.Label>
-                                            <Form.Control as="textarea" placeholder={this.state.EditedAuthorValues.description} value={this.state.EditedAuthorValues.description} onChange={this.Typing} name="description" />
+                                            <Form.Control as="textarea" placeholder={this.state.EditedAuthorValues.description} value={this.state.NewEditedValues.description} onChange={this.Typing} name="description" />
 
 
                                             </Form.Group>

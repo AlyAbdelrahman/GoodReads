@@ -25,8 +25,11 @@ export const Navbar = (props) => {
       <span></span>
     </label>
   </div>
-  <input type="checkbox" id="nav1-check"/>
+
   <div className="nav1-links">
+  { <li className="nav1-item"><Link to="/Admin">Admin</Link></li>}
+  { <li className="nav1-item"><Link to="/DisplayCategories">Categories</Link></li>}
+
   {value.state.UserInfo.length ?'': <li className="nav1-item"><Link to="/">Register</Link></li>}
   {value.state.UserInfo.length ?'':<li className="nav1-item"><Link to="/login">Login</Link></li>}
 
@@ -34,7 +37,7 @@ export const Navbar = (props) => {
   {/* <li className="nav1-item"><Link to="/">Home</Link></li> */}
 {value.state.UserInfo.length ?
     <li className="nav1-item"><Link to="/">hello {value.state.UserInfo}</Link></li>                    
-    :<li className="nav1-item"><Link to="/">hello visitor</Link></li> 
+    :<li className="nav1-item">hello visitor</li> 
 }
   {value.state.UserInfo.length ?<li className="nav1-item"><Link to="/">Log Out</Link></li>:''}
 

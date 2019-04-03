@@ -105,7 +105,7 @@ export  class LogInForm extends React.Component {
                 <React.Fragment>
     <div id="main-registration-container">
      <div className="login">
-        <h3>Welcome to Admin Panel</h3>
+        <h3>Welcome </h3>
         <form   name="userRegistrationForm"  onSubmit= {this.submituserLoginForm(value)} >
         
         <label>Email ID:</label>

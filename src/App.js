@@ -79,6 +79,9 @@ AddNewBook=(Book)=>{
   const matchedCategory = this.state.Categories.tbody.find((item) => item.Name ===Book.CategoryId);
   const matchedCategoryId= matchedCategory.ID
   Book.CategoryId = matchedCategoryId;
+  const matchedAuthor = this.state.Authors.tbody.find((item) => item.Name ===Book.AuthorID);
+
+  Book.AuthorId= matchedAuthor.ID;
   const {tbody}=this.state.Books;
   this.setState({
     Books: {
@@ -107,8 +110,8 @@ AddNewAuthor=(Author)=>{
 });
 }
 EditAuthor=(AuthorID, NewValues)=>{
-  const matchedIdAuthor = this.state.Categories.tbody.find((item) => item.ID ===AuthorID);
-
+  const matchedIdAuthor = this.state.Authors.tbody.find((item) => item.ID ===AuthorID);
+console.log(matchedIdAuthor)
   matchedIdAuthor.photo = NewValues.photo;
   matchedIdAuthor.FirstName = NewValues.FirstName;
   matchedIdAuthor.LastName = NewValues.LastName;
