@@ -10,7 +10,10 @@ import { AdminDashBoard } from './Components/AdminComponent/AdminDashBoard'
 import {DisplayCategories} from './Components/UserComponent/Categories/list'
 import {DisplayCategoryBooks} from './Components/UserComponent/Books/List'
 import {BookDetails} from './Components/UserComponent/Books/bookdetails'
-import {UserDashBoard} from './Components/AdminComponent/UserDashBoard'
+import {UserDashBoard} from './Components/AdminComponent/UserDashBoard';
+import {WantReadBooks} from './Components/AdminComponent/WantReadBooks';
+import {ReadBooks} from './Components/AdminComponent/ReadBooks';
+import {CurrentlyReading} from './Components/AdminComponent/CurrentlyReadingBooks';
 
 export const MyContext = React.createContext();
 
@@ -157,7 +160,7 @@ DeleteAuthor=(AuthorID)=>{
           <div className="App">
             <Router>
               <Navbar />
-              <UserDashBoard/>
+             
               <div className="PageContainer">
 
                 <Switch>
@@ -166,6 +169,10 @@ DeleteAuthor=(AuthorID)=>{
                   <Route path="/login" exact component={LogInForm} />
                   <Route path="/Admin" exact component={AdminDashBoard} />
                   <Route path="/DisplayCategories" exact component={DisplayCategories} />
+                  <Route path="/UserProfile" exact component={UserDashBoard} />
+                  <Route path="/WantReadBooks" exact component={WantReadBooks} />
+                  <Route path="/ReadBooks" exact component={ReadBooks} />
+                  <Route path="/CurrentlyReadingBooks" exact component={ CurrentlyReading} />
                   <Route path="/displaybooks/:id" exact component={DisplayCategoryBooks} />
                   <Route path="/BookDetails/:id" exact component={BookDetails} />
                   
