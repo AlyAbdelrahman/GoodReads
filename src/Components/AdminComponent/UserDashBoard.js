@@ -6,6 +6,7 @@ import { MyContext } from '../../App'
 import {Container,Row,Col,ButtonGroup,Button,Table,Form,Pagination} from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
+import {Link} from 'react-router-dom'
 
 import {WantReadBooks} from './WantReadBooks'
 import {WillReadBooks} from './CurrentlyReadingBooks'
@@ -35,10 +36,10 @@ return (
                         <Col md={2} className="margin-top">
                            
                             <ButtonGroup vertical >
-                            <Button variant="secondary">All</Button><br/>
-                            <Button href="/ReadBooks">Read</Button><br/>
-                            <Button href="/CurrentlyReadingBooks" variant="secondary">Currently Reading </Button><br/>
-                            <Button href="/WantReadBooks">Want To Read </Button>
+                            <Link to="/UserProfile" variant="secondary">All</Link><br/>
+                            <Link to="/ReadBooks">Read</Link><br/>
+                            <Link to="/CurrentlyReadingBooks" variant="secondary">Currently Reading </Link><br/>
+                            <Link to="/WantReadBooks">Want To Read </Link>
                             </ButtonGroup>
                            
                         </Col>

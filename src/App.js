@@ -178,8 +178,7 @@ DeleteAuthor=(AuthorID)=>{
                   <Route path="/CurrentlyReadingBooks" exact component={ CurrentlyReading} />
                   <Route path="/displaybooks/:id" exact component={DisplayCategoryBooks} />
                   <Route path="/BookDetails/:id" exact component={BookDetails} />
-                  
-                  BookDetails
+                 
                 </Switch>
               </div>
             </Router>
