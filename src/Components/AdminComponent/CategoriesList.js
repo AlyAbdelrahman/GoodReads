@@ -17,12 +17,17 @@ export class CategoriesList extends React.Component {
         this.TypingNewCategory = this.TypingNewCategory.bind(this);
         this.TypingEditCategory = this.TypingEditCategory.bind(this);
         this.ColseEditPopUp = this.ColseEditPopUp.bind(this);
+        this.Typing = this.Typing.bind(this);
+
+
 
         this.state = {
             NewCategoryPopSHow: false,
             EditPopShow: false,
             addnewCategoryName: '',
             EditedCategoryName: '',
+            Search:'',
+
             CategoryValues: []
         }
 
@@ -71,6 +76,16 @@ export class CategoriesList extends React.Component {
     DeleteCategory = (inputvalue, id) => (e) => {
         inputvalue.DeleteCategory(id)
     }
+    Typing(e) {
+        const name = e.target.name;
+        const value = e.target.value;
+
+        console.log(value, name)
+
+        this.setState({ [name]: value });
+        // const value = e.target.value;
+        // this.setState({ addnewCategoryName: value });
+    }
 
 
     render() {
@@ -82,7 +97,9 @@ export class CategoriesList extends React.Component {
                         
                             <Container>
                                 <Row>
-                                    <Col md={{ span: 6, offset: 8 }}><Button className="AddNewCategory" variant="primary" onClick={this.OpenAddPopUp}>Add New CAtegory</Button></Col>
+                               
+                                <Col md={9}>  <Form.Control className="Search" type="text" placeholder="Search Category" name="Search" onChange={this.Typing}/></Col>
+                                    <Col md={3}  ><Button className="AddNewCategory" variant="primary" onClick={this.OpenAddPopUp}>Add New CAtegory</Button></Col>
                                 </Row>
                             </Container>
 
@@ -95,7 +112,7 @@ export class CategoriesList extends React.Component {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {value.state.Categories.tbody.filter(c => (!(c.deleted))).map(z =>
+                                        {value.state.Categories.tbody.filter(c => (!(c.deleted)&&(c.Name).includes(this.state.Search))).map(z =>
 
                                             <tr key={uuidv1()} >
 

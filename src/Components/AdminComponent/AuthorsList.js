@@ -19,7 +19,7 @@ export  class AuthorsListing extends React.Component {
         this.ColseEditPopUp = this.ColseEditPopUp.bind(this);
 
         this.state = {
-
+            Search:'',
             PhotoUrl:'',
             FirstName:'',
             LastName:'',
@@ -118,7 +118,9 @@ export  class AuthorsListing extends React.Component {
 
                             <Container>
                                 <Row>
-                                    <Col md={{ span: 6, offset: 8 }}><Button className="AddNewCategory" variant="primary" onClick={this.OpenAddPopUp}>Add Author</Button></Col>
+                                <Col md={9}>  <Form.Control className="Search" type="text" placeholder="Search Author FirstName" name="Search" onChange={this.Typing}/></Col>
+
+                                    <Col md={3}><Button className="AddNewCategory" variant="primary" onClick={this.OpenAddPopUp}>Add Author</Button></Col>
                                 </Row>
                             </Container>
 
@@ -131,7 +133,7 @@ export  class AuthorsListing extends React.Component {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {value.state.Authors.tbody.filter(c => (!(c.deleted))).map(z =>
+                                        {value.state.Authors.tbody.filter(c => (!(c.deleted)&&(c.FirstName).includes(this.state.Search))).map(z =>
 
                                             <tr key={uuidv1()} >
 
