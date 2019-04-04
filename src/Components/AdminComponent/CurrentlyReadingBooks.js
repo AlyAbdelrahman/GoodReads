@@ -10,17 +10,17 @@ export class CurrentlyReading extends React.Component
       return(
          <>
             <Container>
-               <Row className="margin-top">
-                  <Col md={2} className="margin-top">
-                     <ButtonGroup vertical >
-                     <Link to="/UserProfile" variant="secondary">All</Link><br/>
-                     <Link to="/ReadBooks">Read</Link><br/>
-                            <Link to="/CurrentlyReadingBooks" variant="secondary">Currently Reading </Link><br/>
-                            <Link to="/WantReadBooks">Want To Read </Link>
-                     </ButtonGroup>
+               <Row className="margin-top ">
+                  <Col md={3} className="margin-top custom">
+                      <ul>
+                           <li><Link to="/UserProfile" className="">All</Link></li>
+                           <li> <Link to="/ReadBooks">Read</Link></li>
+                           <li><Link to="/CurrentlyReadingBooks">Currently Reading </Link><br/></li>
+                           <li><Link to="/WantReadBooks">Want To Read </Link></li>
+                        </ul>
                   </Col>
 
-                  <Col md={10} >
+                  <Col md={9} >
                   <h2>Currently Reading </h2> 
                      <Table striped bordered hover size="lg">
                         <thead>

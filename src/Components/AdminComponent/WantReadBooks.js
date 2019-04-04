@@ -10,19 +10,18 @@ return(
    <>
       <Container>
                     <Row className="margin-top">
-                        <Col md={2} className="margin-top">
+                        <Col md={3} className="margin-top custom">
                            
-                            <ButtonGroup vertical >
-                            <Link to="/UserProfile" className="">All</Link><br/>
-                            <Link to="/ReadBooks">Read</Link><br/>
-                            <Link to="/CurrentlyReadingBooks">Currently Reading </Link><br/>
-                            <Link to="/WantReadBooks">Want To Read </Link>
-                            </ButtonGroup>
-                           
+                            <ul>
+                                <li><Link to="/UserProfile" className="">All</Link></li>
+                                <li> <Link to="/ReadBooks">Read</Link></li>
+                                <li><Link to="/CurrentlyReadingBooks">Currently Reading </Link><br/></li>
+                                <li><Link to="/WantReadBooks">Want To Read </Link></li>
+                            </ul>
                         </Col>
 
-                        <Col md={10} className="align-left">
-                  <h2>Want To Read </h2>
+                        <Col md={9} className="align-left">
+                                 <h2>Want To Read </h2>
 
                         <Table striped bordered hover size="lg">
                             <thead>
