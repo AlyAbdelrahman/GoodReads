@@ -19,7 +19,7 @@ export class BooksListing extends React.Component {
         this.ColseEditPopUp = this.ColseEditPopUp.bind(this);
 
         this.state = {
-
+            Search:'',
             BookName: '',
             CategoryId: '',
             AuthorId: '',
@@ -28,8 +28,6 @@ export class BooksListing extends React.Component {
 
             NewCategoryPopSHow: false,
             EditPopShow: false,
-            // addnewCategoryName: '',
-            // EditedCategoryName: '',
             EditedBookValues: []
         }
 
@@ -103,7 +101,9 @@ export class BooksListing extends React.Component {
 
                             <Container>
                                 <Row>
-                                    <Col md={{ span: 6, offset: 8 }}><Button className="AddNewCategory" variant="primary" onClick={this.OpenAddPopUp}>Add New Book</Button></Col>
+                                <Col md={9}>  <Form.Control className="Search" type="text" placeholder="Search Book" name="Search" onChange={this.Typing}/></Col>
+
+                                    <Col md={3}><Button className="AddNewCategory" variant="primary" onClick={this.OpenAddPopUp}>Add New Book</Button></Col>
                                 </Row>
                             </Container>
 
@@ -116,7 +116,7 @@ export class BooksListing extends React.Component {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {value.state.Books.tbody.filter(c => (!(c.deleted))).map(z =>
+                                        {value.state.Books.tbody.filter(c => (!(c.deleted)&&(c.Name).includes(this.state.Search))).map(z =>
 
                                             <tr key={uuidv1()} >
 

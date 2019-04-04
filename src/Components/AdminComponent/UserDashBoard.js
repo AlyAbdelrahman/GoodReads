@@ -1,16 +1,16 @@
 import React from 'react'
-import { CategoriesList } from './CategoriesList'
-import {BooksListing} from './BooksListing'
-import {AuthorsListing} from './AuthorsList'
+// import { CategoriesList } from './CategoriesList'
+// import {BooksListing} from './BooksListing'
+// import {AuthorsListing} from './AuthorsList'
 import { MyContext } from '../../App'
 import {Container,Row,Col,ButtonGroup,Button,Table,Form,Pagination} from 'react-bootstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
 import {Link} from 'react-router-dom'
 
-import {WantReadBooks} from './WantReadBooks'
-import {WillReadBooks} from './CurrentlyReadingBooks'
-import {ReadBooks} from './ReadBooks'
+// import {WantReadBooks} from './WantReadBooks'
+// import {WillReadBooks} from './CurrentlyReadingB/ooks'
+// import {ReadBooks} from './ReadBooks'
 
 const uuidv4 = require('uuid/v4');
 

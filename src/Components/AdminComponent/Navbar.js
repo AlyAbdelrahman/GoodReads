@@ -28,8 +28,10 @@ export const Navbar = (props) => {
 
   <div className="nav1-links">
   { <li className="nav1-item"><Link to="/Admin">Admin</Link></li>}
-  { <li className="nav1-item"><Link to="/DisplayCategories">Categories</Link></li>}
+  { <li className="nav1-item"><Link to="/UserProfile">UserProfile</Link></li>}
+  { <li className="nav1-item"><Link to="/DisplayCategories"> Categories </Link></li>}
 
+  
   {value.state.UserInfo.length ?'': <li className="nav1-item"><Link to="/">Register</Link></li>}
   {value.state.UserInfo.length ?'':<li className="nav1-item"><Link to="/login">Login</Link></li>}
 

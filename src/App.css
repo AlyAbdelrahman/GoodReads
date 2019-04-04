@@ -1,6 +1,10 @@
+body{
+  /* background-image: url(https://i.pinimg.com/originals/97/14/16/971416d7e102e2de163c3a1cb7a374e7.jpg) */
+
+}
 .App {
   text-align: center;
-  width: 100%
+  width: 100%;
   
 }
 
@@ -82,7 +86,7 @@ form input {
   display: inline;
   /* float: right; */
   margin: auto;
-  font-size: 18px;
+  font-size: 15px;
 }
 
 .nav1 > .nav1-links > li {
@@ -269,4 +273,10 @@ margin: 5px
 .align-center
 {
   justify-content: center;
+}
+.Search{
+  margin: 10px
+}
+button.AddNewCategory.btn.btn-primary{
+  margin-top: 10px
 }
