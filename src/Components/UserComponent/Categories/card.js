@@ -1,7 +1,6 @@
 import React from 'react'
 import './category.css'
-import { Button, Card, Col, Row, Container } from 'react-bootstrap'
-import {BrowserRouter as Link } from 'react-router-dom';
+import { Button, Card, Col} from 'react-bootstrap'
 
 
 const CategoryCard = (props) => {
