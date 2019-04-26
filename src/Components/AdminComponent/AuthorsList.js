@@ -8,33 +8,32 @@ import { faEdit, faTrash } from "@fortawesome/free-solid-svg-icons";
 const uuidv1 = require('uuid/v1');
 
 
-export  class AuthorsListing extends React.Component {
+export class AuthorsListing extends React.Component {
     constructor(props) {
         super(props);
 
         this.OpenAddPopUp = this.OpenAddPopUp.bind(this);
         this.ColseAddPopUp = this.ColseAddPopUp.bind(this);
         this.Typing = this.Typing.bind(this);
-        this.TypingEditCategory = this.TypingEditCategory.bind(this);
+        // this.TypingEditAuthor = this.TypingEditAuthor.bind(this);
         this.ColseEditPopUp = this.ColseEditPopUp.bind(this);
 
         this.state = {
-            Search:'',
-            PhotoUrl:'',
-            FirstName:'',
-            LastName:'',
-            DateOfBirth:'',
-            Description:'',
-            
+            Search: '',
+            _id: '',
+            photo: '',
+            FirstName: '',
+            LastName: '',
+            DateOfBirth: '',
+            description: '',
 
             NewAuthorPopSHow: false,
             EditPopShow: false,
-            // addnewCategoryName: '',
-            // EditedCategoryName: '',
-            EditedAuthorValues: [],
-            NewEditedValues:[
-                
-            ]
+        
+            // EditedAuthorValues: [],
+            // NewEditedValues: [
+
+            // ]
         }
 
     }
@@ -43,17 +42,31 @@ export  class AuthorsListing extends React.Component {
     }
 
     OpenEditPopUp = (value) => (e) => {
-        this.setState({ EditPopShow: true, EditedAuthorValues: value });
+
+        this.setState({
+            EditPopShow: true,
+            FirstName: value.FirstName,
+            LastName: value.LastName,
+            DateOfBirth: value.DateOfBirth,
+            photo: value.photo,
+            description: value.description,
+            _id: value._id
+        });
     }
 
-    TypingEditCategory(e) {
-        
-        const value = e.target.value;
-        this.setState({ EditedCategoryName: value });
-    }
 
     SaveEdit = (inputvalue, id) => (e) => {
-        inputvalue.EditAuthor(id, this.state.NewEditedValues)
+
+        const newAuthorEditedInfo = {
+            FirstName: this.state.FirstName,
+            LastName: this.state.LastName,
+            photo: this.state.photo,
+            DateOfBirth: this.state.DateOfBirth,
+            description: this.state.description,
+            _id: this.state._id
+        }
+
+        inputvalue.EditAuthor(id, newAuthorEditedInfo)
         this.setState({ EditPopShow: false })
     }
 
@@ -68,39 +81,32 @@ export  class AuthorsListing extends React.Component {
     Typing(e) {
         const name = e.target.name;
         const value = e.target.value;
-
         console.log(value, name)
-
         this.setState({ [name]: value });
-        // const value = e.target.value;
-        // this.setState({ addnewCategoryName: value });
     }
 
     AddNewAuthor = (inputvalue) => (e) => {
-
-        const photo = this.state.PhotoUrl;
+        const photo = this.state.photo;
         const FirstName = this.state.FirstName;
         const LastName = this.state.LastName;
         const DateOfBirth = this.state.DateOfBirth;
-        const Description = this.state.Description;
+        const description = this.state.description;
 
-
-
-        if (!FirstName && !photo && !LastName && !DateOfBirth &!Description) return;
+        if (!FirstName && !photo && !LastName && !DateOfBirth & !description) return;
         const Author = {
-            ID: uuidv1(), photo,FirstName,LastName,DateOfBirth,Description ,deleted: false
+            photo, FirstName, LastName, DateOfBirth, description, deleted: false
         };
         console.log(Author)
         inputvalue.AddNewAuthor(Author)
         this.setState({
             NewAuthorPopSHow: false,
-            PhotoUrl:'',
-            FirstName:'',
-            LastName:'',
-            DateOfBirth:'',
-            Description:'',
-            
-           
+            photo: '',
+            FirstName: '',
+            LastName: '',
+            DateOfBirth: '',
+            description: '',
+
+
         })
     }
 
@@ -118,7 +124,7 @@ export  class AuthorsListing extends React.Component {
 
                             <Container>
                                 <Row>
-                                <Col md={9}>  <Form.Control className="Search" type="text" placeholder="Search Author FirstName" name="Search" onChange={this.Typing}/></Col>
+                                    <Col md={9}>  <Form.Control className="Search" type="text" placeholder="Search Author FirstName" name="Search" onChange={this.Typing} /></Col>
 
                                     <Col md={3}><Button className="AddNewCategory" variant="primary" onClick={this.OpenAddPopUp}>Add Author</Button></Col>
                                 </Row>
@@ -133,11 +139,13 @@ export  class AuthorsListing extends React.Component {
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {value.state.Authors.tbody.filter(c => (!(c.deleted)&&(c.FirstName).includes(this.state.Search))).map(z =>
+                                        {/* {value.state.Authors.tbody.filter(c => (!(c.deleted)&&(c.FirstName).includes(this.state.Search))).map(z => */}
+
+                                        {value.state.Authors.tbody.filter(c => (!(c.deleted) && (c.FirstName))).map(z =>
 
                                             <tr key={uuidv1()} >
 
-                                                <td key={uuidv1()}>{z.ID}</td>
+                                                <td key={uuidv1()}>{z._id}</td>
                                                 <td key={uuidv1()}><img className="AuthorPhoto" src={z.photo} alt={z.photo} /></td>
                                                 <td key={uuidv1()}>{z.FirstName}</td>
                                                 <td key={uuidv1()}>{z.LastName}</td>
@@ -146,7 +154,7 @@ export  class AuthorsListing extends React.Component {
                                                 <td>
                                                     <>
                                                         <FontAwesomeIcon className="EditIcon" icon={faEdit} onClick={this.OpenEditPopUp(z)} />
-                                                        <FontAwesomeIcon className="DeleteIcon" icon={faTrash} onClick={this.DeleteAuthor(value, z.ID)} />
+                                                        <FontAwesomeIcon className="DeleteIcon" icon={faTrash} onClick={this.DeleteAuthor(value, z._id)} />
                                                     </>
                                                 </td>
                                             </tr>
@@ -165,21 +173,21 @@ export  class AuthorsListing extends React.Component {
                                     <Form>
                                         <Form.Row>
                                             <Form.Group as={Col} controlId="formGridAddress1" >
-                                                    <Form.Label >Photo Url</Form.Label>
-                                                    <Form.Control value={this.state.PhotoUrl} onChange={this.Typing} name="PhotoUrl" />
+                                                <Form.Label >Photo Url</Form.Label>
+                                                <Form.Control value={this.state.photo} onChange={this.Typing} name="photo" />
 
-                                            <Form.Label >First Name</Form.Label>
-                                            <Form.Control value={this.state.FirstName} onChange={this.Typing} name="FirstName" />
+                                                <Form.Label >First Name</Form.Label>
+                                                <Form.Control value={this.state.FirstName} onChange={this.Typing} name="FirstName" />
 
 
-                                            <Form.Label >last Name</Form.Label>
-                                            <Form.Control value={this.state.LastName} onChange={this.Typing} name="LastName" />
-                                            {/* DatePicekr search 3leha fel el upgrades */}
-                                            <Form.Label >Date Of Birth</Form.Label>
-                                            <Form.Control value={this.state.DateOfBirth} onChange={this.Typing} name="DateOfBirth" />
+                                                <Form.Label >last Name</Form.Label>
+                                                <Form.Control value={this.state.LastName} onChange={this.Typing} name="LastName" />
+                                                {/* DatePicekr search 3leha fel el upgrades */}
+                                                <Form.Label >Date Of Birth</Form.Label>
+                                                <Form.Control value={this.state.DateOfBirth} onChange={this.Typing} name="DateOfBirth" />
 
-                                            <Form.Label >Description</Form.Label>
-                                            <Form.Control as="textarea" value={this.state.Description} onChange={this.Typing} name="Description" />
+                                                <Form.Label >Description</Form.Label>
+                                                <Form.Control as="textarea" value={this.state.description} onChange={this.Typing} name="description" />
 
 
 
@@ -208,20 +216,20 @@ export  class AuthorsListing extends React.Component {
                                         <Form.Row>
                                             <Form.Group as={Col} controlId="formGridAddress1" >
 
-                                            <Form.Label >Photo Url</Form.Label>
-                                            <Form.Control placeholder={this.state.EditedAuthorValues.photo} value={this.state.PhotoUrl} onChange={this.Typing} name="PhotoUrl" />
+                                                <Form.Label >Photo Url</Form.Label>
+                                                <Form.Control placeholder={this.state.photo} value={this.state.photo} onChange={this.Typing} name="photo" />
 
-                                            <Form.Label >First Name</Form.Label>
-                                            <Form.Control placeholder={this.state.EditedAuthorValues.FirstName} value={this.state.FirstName} onChange={this.Typing} name="FirstName" />
+                                                <Form.Label >First Name</Form.Label>
+                                                <Form.Control placeholder={this.state.FirstName} value={this.state.FirstName} onChange={this.Typing} name="FirstName" />
 
-                                            <Form.Label >Last Name</Form.Label>
-                                            <Form.Control placeholder={this.state.EditedAuthorValues.LastName} value={this.state.NewEditedValues.LastName} onChange={this.Typing} name="LastName" />
+                                                <Form.Label >Last Name</Form.Label>
+                                                <Form.Control placeholder={this.state.LastName} value={this.state.LastName} onChange={this.Typing} name="LastName" />
 
-                                            <Form.Label >Date Of Birth</Form.Label>
-                                            <Form.Control placeholder={this.state.EditedAuthorValues.DateOfBirth} value={this.state.NewEditedValues.DateOfBirth} onChange={this.Typing} name="DateOfBirth" />
+                                                <Form.Label >Date Of Birth</Form.Label>
+                                                <Form.Control placeholder={this.state.DateOfBirth} value={this.state.DateOfBirth} onChange={this.Typing} name="DateOfBirth" />
 
-                                            <Form.Label >Description</Form.Label>
-                                            <Form.Control as="textarea" placeholder={this.state.EditedAuthorValues.description} value={this.state.NewEditedValues.description} onChange={this.Typing} name="description" />
+                                                <Form.Label >Description</Form.Label>
+                                                <Form.Control as="textarea" placeholder={this.state.description} value={this.state.description} onChange={this.Typing} name="description" />
 
 
                                             </Form.Group>
@@ -232,7 +240,7 @@ export  class AuthorsListing extends React.Component {
                                     <Button variant="secondary" onClick={this.ColseEditPopUp}>
                                         Close
                 </Button>
-                                    <Button variant="primary" onClick={this.SaveEdit(value, this.state.EditedAuthorValues.ID)}>
+                                    <Button variant="primary" onClick={this.SaveEdit(value, this.state._id)}>
                                         Save Changes
             </Button>
                                 </Modal.Footer>

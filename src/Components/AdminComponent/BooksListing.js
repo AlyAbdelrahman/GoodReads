@@ -216,11 +216,16 @@ export class BooksListing extends React.Component {
                                                         <option key={uuidv1()} value={z.Name} >{z.Name}</option>)}
                                                 </Form.Control>
 
+                                                    <Form.Label > Author Name</Form.Label>
+                                                <Form.Control as="select" name="CategoryId"  value={this.state.EditedBookValues.AuthorId}  onChange={this.Typing} >
+                                                    <option  >Choose...</option>
+                                                    {value.state.Authors.tbody.filter(c => (!(c.deleted))).map(z =>
+                                                        <option key={uuidv1()} value={z.FirstName} >{z.FirstName}</option>)}
+                                                </Form.Control>
 
 
-                                                <Form.Label > Author Name</Form.Label>
 
-                                                <Form.Control placeholder={this.state.EditedBookValues.AuthorName} onChange={this.Typing} name="AuthorName" />
+                                                {/* <Form.Control placeholder={this.state.EditedBookValues.AuthorName} onChange={this.Typing} name="AuthorName" /> */}
                                                 <Form.Label >Image Url</Form.Label>
 
                                                 <Form.Control placeholder={this.state.EditedBookValues.photo} onChange={this.Typing} name="imageUrl" />

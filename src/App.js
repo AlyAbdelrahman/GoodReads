@@ -15,9 +15,13 @@ import {WantReadBooks} from './Components/AdminComponent/WantReadBooks';
 import {ReadBooks} from './Components/AdminComponent/ReadBooks';
 import {CurrentlyReading} from './Components/AdminComponent/CurrentlyReadingBooks';
 
+import {AuthorInfo,DeleteAuthorInfo,AddNewAuthor,EditAuthorInfo} from './API/Author';
+import axios from 'axios';
+
+
 export const MyContext = React.createContext();
 
-class App extends Component {
+export class App extends Component {
   state = {
     UserInfo: [],
     Categories : {
@@ -39,10 +43,10 @@ class App extends Component {
   Authors:{
     th:['ID' , 'photo' , 'FirstName' , 'LastName' , 'DateOfBirth', 'Action'],
     tbody:[
-      {ID:1, photo:'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png' ,FirstName:'Ahmed', LastName:'Mourad' , DateOfBirth:'20/5/1885' , description:'author description 1',deleted:false},
-      {ID:2, photo:'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png' ,FirstName:'omar', LastName:'taher' , DateOfBirth:'20/9/1975' , description:'author description 2',deleted:false},
-      {ID:3, photo:'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png' ,FirstName:'mostafa', LastName:'monuir' , DateOfBirth:'26/9/1990' , description:'author description 3',deleted:false},
-    ]
+       //   {ID:1, photo:'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png' ,FirstName:'Ahmed', LastName:'Mourad' , DateOfBirth:'20/5/1885' , description:'author description 1',deleted:false},
+    //   {ID:2, photo:'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png' ,FirstName:'omar', LastName:'taher' , DateOfBirth:'20/9/1975' , description:'author description 2',deleted:false},
+    //   {ID:3, photo:'https://greenido.files.wordpress.com/2017/11/ray-dalio-principles-angled-book-ab1a2ff6c873144e545e21f9827a99a14d71bc635f6505ec17ee17bdf59ec742.png' ,FirstName:'mostafa', LastName:'monuir' , DateOfBirth:'26/9/1990' , description:'author description 3',deleted:false},
+  ]
   },
    
   UserDashBoard:{
@@ -55,6 +59,32 @@ class App extends Component {
   }
   }
 
+componentDidMount(){
+  AuthorInfo(this);
+
+}
+
+// componentDidUpdate(){
+//   AuthorInfo(this);
+  
+  // axios.get('http://localhost:3000/api/Authors/GetAll')
+  // .then((response) => {
+  //   // handle success
+  //   const data = response.data;
+  //   console.log(data)
+  //   this.setState({
+  //   Authors : {
+  //   ...this.state.Authors, tbody:data
+ 
+
+  // }})
+  // })  .catch((error) => {
+  //   // handle error
+  //   console.log(error);
+  // });
+ // console.log(AuthorInfo());
+ 
+// }
 
   SetUserName = (UserName) => {
     this.setState({ UserInfo: UserName });
@@ -109,34 +139,41 @@ DeleteBook=(BookID)=>{
   this.setState( {})
 }
 ///-----------------Authors-----------------------
-
-
 AddNewAuthor=(Author)=>{
- 
-  const {tbody}=this.state.Authors;
-  this.setState({
-    Authors : {
-    ...this.state.Authors, 
-    tbody: tbody.concat(Author)
-  }
-});
+  AddNewAuthor(Author,this)
+
+//  console.log(AuthorInfo());
+  // this.setState({
+  //   Authors : {
+  //   ...this.state.Authors, 
+  //   tbody: tbody.concat(Author)
+  // }
+// });
 }
 EditAuthor=(AuthorID, NewValues)=>{
-  const matchedIdAuthor = this.state.Authors.tbody.find((item) => item.ID ===AuthorID);
-console.log(matchedIdAuthor)
-  matchedIdAuthor.photo = NewValues.photo;
-  matchedIdAuthor.FirstName = NewValues.FirstName;
-  matchedIdAuthor.LastName = NewValues.LastName;
-  matchedIdAuthor.DateOfBirth = NewValues.DateOfBirth;
-  this.setState( {})
+//   console.log("app.js")
+// console.log(NewValues);
+// console.log(AuthorID);
+EditAuthorInfo(AuthorID,NewValues,this);
+
+
+  // const matchedIdAuthor = this.state.Authors.tbody.find((item) => item.ID ===AuthorID);
+  // console.log(matchedIdAuthor)
+
+  // matchedIdAuthor.photo = NewValues.photo;
+  // matchedIdAuthor.FirstName = NewValues.FirstName;
+  // matchedIdAuthor.LastName = NewValues.LastName;
+  // matchedIdAuthor.DateOfBirth = NewValues.DateOfBirth;
+  // this.setState( {})
 }
 
 
 
 DeleteAuthor=(AuthorID)=>{
-  const matchedIdCategory = this.state.Authors.tbody.find((item) => item.ID ===AuthorID);
-  matchedIdCategory.deleted = true;
-  this.setState( {})
+DeleteAuthorInfo(AuthorID,this);
+
+  //  componentDidMount();
+ 
 }
 
   render() {
